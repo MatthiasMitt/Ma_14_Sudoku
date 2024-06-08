@@ -1,7 +1,26 @@
 modulname = 'Ma_14_Rahmen'
 _c_ = '(c) 2020 copyright: Matthias Mittelstein , Hauptstraße 23, 23816 Neversdorf, Germany ,, Matthias@Mittelstein.name'
 
-import console
+# iPad and iPhone only: import console
+
+
+
+import sys
+import os
+b2 = os.path.realpath(__file__).split("/")
+b4 = "/".join(b2[0:-2]) 
+b5 = "/".join(b2[0:-1])
+# 'import' soll auch in dem Ordner suchen, in dem dises Programm gespeichet ist.
+sys.path.insert(1,b5)
+# 'import' soll auch in dem umfassenden Ordner suchen, wo es hoffentlich das
+# Hilfspaket 'Ma_Util' gibt. Unabhänge davon, wie und von wo aus gestartet wurde.
+sys.path.insert(1,b4)
+
+from   Ma_Util.Ma_Print                             import print_dict, print_list, print_list_of_dicts
+from   Ma_Util.Ma_Console                           import Ma_Console
+from   Ma_Util.Ma_Plattform                         import Ma_Plattform
+Ma14RPlattform = Ma_Plattform()
+
 
 class Rahmen():
 	
@@ -37,10 +56,12 @@ class Rahmen():
 	systemFont = 'Menlo-Regular'
 	
 	def setzeSchriftgröße(self,points=30):
-		console.set_font('Menlo-Regular',points)
+		if Ma14RPlattform.plattform.auf_iPhone_o_iPad():
+			console.set_font('Menlo-Regular',points)
 	
 	def setzeNormaleSchrift(self):
-		console.set_font()
+		if Ma14RPlattform.plattform.auf_iPhone_o_iPad():
+			console.set_font()
 	
 	def testBoxWithNames(self):
 		r = self
@@ -126,12 +147,13 @@ if __name__ == '__main__':
 		print('')
 	
 	def test3(rah,fn,siz):
-		if fn == '' or fn == None:
-			print('             font zurücksetzen.')
-			console.set_font() # reset
-		else:
-			console.set_font(fn,siz)
-			print('             font : ',fn,siz)
+		if Ma14RPlattform.auf_iPhone_o_iPad():
+			if fn == '' or fn == None:
+				print('             font zurücksetzen.')
+				console.set_font() # reset
+			else:
+				console.set_font(fn,siz)
+				print('             font : ',fn,siz)
 		rah.testBoxWithNames()
 	
 	testBoxDirect()
@@ -145,5 +167,6 @@ if __name__ == '__main__':
 	test3(r,'Menlo-Regular',30)
 	test3(r,'Menlo-Regular',8)
 	
-	console.set_font() # reset
+	if Ma14RPlattform.auf_iPhone_o_iPad():
+		console.set_font() # reset
 
