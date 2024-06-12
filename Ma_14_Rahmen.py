@@ -56,11 +56,11 @@ class Rahmen():
 	systemFont = 'Menlo-Regular'
 	
 	def setzeSchriftgröße(self,points=30):
-		if Ma14RPlattform.plattform.auf_iPhone_o_iPad():
+		if Ma14RPlattform.auf_iPhone_o_iPad():
 			console.set_font('Menlo-Regular',points)
 	
 	def setzeNormaleSchrift(self):
-		if Ma14RPlattform.plattform.auf_iPhone_o_iPad():
+		if Ma14RPlattform.auf_iPhone_o_iPad():
 			console.set_font()
 	
 	def testBoxWithNames(self):
