@@ -128,6 +128,10 @@ class Rahmen():
 		for ix in range(9*9):
 			l = l9x9[ix]
 			r = r9x9[ix]
+			print('debug(gebeS81a1PaarSehrSchön())','type(l):',type(l))
+			print('debug(gebeS81a1PaarSehrSchön())','     l :',     l )
+			print('debug(gebeS81a1PaarSehrSchön())','type(r):',type(r))
+			print('debug(gebeS81a1PaarSehrSchön())','     r :',     r )
 			if l == r:
 				s3_9x9 += ' ' + l + ' '
 			else:
